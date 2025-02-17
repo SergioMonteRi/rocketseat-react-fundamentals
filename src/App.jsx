@@ -1,7 +1,14 @@
-import { Header } from "./components/Header"
-import { Sidebar } from "./components/Sidebar"
+import { Post } from "./components/Post";
+import { Header } from "./components/Header";
+import { Sidebar } from "./components/Sidebar";
 
-import styles from './App.module.css'
+import { posts } from "./mocks/posts";
+
+import styles from "./App.module.css";
+
+// author: { avatar_url: string, name: string, role: string }
+// plublishedAt: Date
+// content: string
 
 function App() {
   return (
@@ -9,15 +16,20 @@ function App() {
       <Header />
 
       <div className={styles.wrapper}>
-       <Sidebar />
+        <Sidebar />
         <main>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi praesentium similique ducimus provident nemo ut veniam, in harum error exercitationem cumque enim fugiat atque alias, at aut necessitatibus maxime facere.
-
-
+          {posts.map((post) => (
+            <Post
+              key={post.id}
+              author={post.author}
+              content={post.content}
+              publishedAt={post.publishedAt}
+            />
+          ))}
         </main>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
